@@ -1,5 +1,5 @@
 import React from 'react'
-import { useNavigate, useLocation } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import CircularProgress from '@mui/material/CircularProgress';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
@@ -35,7 +35,6 @@ function CircularProgressWithLabel({correct, total}) {
 
 export default function Result() {
 	let location = useLocation()
-  let navigate = useNavigate()
 	let correct = location.search.split('&')[0].split('=')[1]
   let total = location.search.split('&')[1].split('=')[1]
 	return (
