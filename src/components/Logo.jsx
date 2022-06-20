@@ -27,7 +27,9 @@ export default function Logo() {
 			WebkitTextFillColor: "transparent"
 		}}
 		>
-        <Typography variant="h3" component="div" gutterBottom textAlign='center'>Quiz APP</Typography>
+		<a href='/'>
+			<Typography variant="h3" component="div" gutterBottom textAlign='center'>Quiz APP</Typography>
+		</a>
     </Box>
   )
 }

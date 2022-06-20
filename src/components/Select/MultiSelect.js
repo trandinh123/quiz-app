@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, {useContext} from 'react';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -6,6 +6,7 @@ import FormControl from '@mui/material/FormControl';
 import ListItemText from '@mui/material/ListItemText';
 import Select from '@mui/material/Select';
 import Checkbox from '@mui/material/Checkbox';
+import { QuizParams } from '../../page/Homepage/Homepage';
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -18,17 +19,15 @@ const MenuProps = {
   },
 };
 
-export default function MultipleSelectCheckmarks({items, label}) {
-  const [val, setVal] = React.useState([]);
-
+export default function MultipleSelectCheckmarks({items, label, type}) {
+  let [val, setVal] = React.useState([]);
+  const { dispatch } = useContext(QuizParams);
   const handleChange = (event) => {
     const {
       target: { value },
     } = event;
-    setVal(
-      // On autofill we get a stringified value.
-      typeof value === 'string' ? value.split(',') : value,
-    );
+    setVal(typeof value === 'string' ? value.split(',') : value);
+    dispatch({type: type, value: event.target.value})
   };
 
   return (

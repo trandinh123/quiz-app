@@ -3,12 +3,14 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import { QuizParams } from '../../page/Homepage/Homepage';
 
-export default function BasicSelect({items, label}) {
+export default function BasicSelect({items, label, type}) {
   const [val, setVal] = React.useState('');
-
+  const { dispatch } = React.useContext(QuizParams);
   const handleChange = (event) => {
     setVal(event.target.value);
+    dispatch({type: type, value: event.target.value});
   };
 
   return (
@@ -22,7 +24,7 @@ export default function BasicSelect({items, label}) {
         onChange={handleChange}
       >
         {
-          items.map(item => <MenuItem value={item}>{item}</MenuItem>)
+          items.map(item => <MenuItem key={item} value={item}>{item}</MenuItem>)
         }
       </Select>
     </FormControl>
